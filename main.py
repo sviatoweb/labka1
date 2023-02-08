@@ -31,7 +31,7 @@ def parse_field(field):
     rows_ = rows[::-1]
     for i in range(5):
         r_ = rows_[i][i:i+5]
-        c_ = columns[i][4-i:9-i]
+        c_ = columns[i][4-i:8-i]
         color = r_+c_
         colors.append(color)
     return colors
@@ -97,6 +97,10 @@ def check_columns(board):
                 numbers = numbers[:index] + numbers[index + 1:]
     return True
 
+
+def validate_board(board):
+    """Checks wether board is valid"""
+    return all((check_colors(parse_field(board)), check_columns(board), check_rows(board)))
 
 if __name__ == "__main__":
     import doctest
