@@ -1,15 +1,17 @@
 """Puzzle module"""
 
-def parse_field(field):
+from typing import List
+
+def parse_field(field: List[str]) -> List[List]:
     """
     return colored area in a list
     >>> parse_field(["**** ****", "***1 ****", "**  3****", "* 4 1****",\
  "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"])
-    [[' ', ' ', '2', ' ', ' ', ' ', ' ', '3', ' ', ' '],\
- [' ', '8', ' ', ' ', '2', ' ', ' ', '6', ' ', ' '],\
- [' ', ' ', '1', ' ', ' ', ' ', '4', ' ', ' ', ' '],\
- [' ', '8', '3', ' ', ' ', '1', ' ', ' ', ' ', ' '],\
- [' ', '9', ' ', '5', ' ', ' ', ' ', '3', '1', ' ']]
+    [[' ', ' ', '2', ' ', ' ', ' ', ' ', '3', ' '],\
+ [' ', '8', ' ', ' ', '2', ' ', ' ', '6', ' '],\
+ [' ', ' ', '1', ' ', ' ', ' ', '4', ' ', ' '],\
+ [' ', '8', '3', ' ', ' ', '1', ' ', ' ', ' '],\
+ [' ', '9', ' ', '5', ' ', ' ', ' ', '3', '1']]
     """
     rows = []
     columns = []
@@ -36,9 +38,17 @@ def parse_field(field):
     return colors
 
 
-def check_colors(colors):
-    """This function checking board colored ared.
-    Check: if all numbers are from 1 to 9 and all numbers appears only once."""
+def check_colors(colors: List[List]) -> bool:
+    """
+    This function checking board colored ared.
+    Check: if all numbers are from 1 to 9 and all numbers appears only once.
+    >>> check_colors(parse_field(["**** ****", "***1 ****", "**  3****", "* 4 1****",\
+ "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"]))
+    True
+    >>> check_colors(parse_field(["**** ****", "***1 ****", "**  3****", "* 4 1****",\
+ "     9 5 ", " 6  83  *", "3   1  **", "3 8  2***", "  2  ****"]))
+    False
+    """
     for i in colors:
         dct = {}
         for j in i:
@@ -52,7 +62,7 @@ def check_colors(colors):
     return True
 
 
-def check_rows(field):
+def check_rows(field: List[str]) -> bool:
     """
     This function checking board rows.
     First check: if all numbers are from 1 to 9.
@@ -89,7 +99,7 @@ def check_rows(field):
     return True
 
 
-def check_columns(board):
+def check_columns(board: List[str]) -> bool:
     """
     Checks whether columns are correct
     >>> check_columns(["**** ****", "***1 ****","**  3****","* 4 1****",\
@@ -110,7 +120,7 @@ def check_columns(board):
     return True
 
 
-def validate_board(board):
+def validate_board(board: List[str]) -> bool:
     """Checks wether board is valid"""
     return all((check_colors(parse_field(board)), check_columns(board), check_rows(board)))
 
