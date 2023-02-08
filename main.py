@@ -53,4 +53,3 @@ def check_if_false(colors):
                     return False
     return True
 
-print(check_if_false(parse_field(board)))
