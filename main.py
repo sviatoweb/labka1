@@ -1,15 +1,14 @@
+"""Puzzle module"""
+
 def parse_field(field):
     """
     return colored area in a list
     >>> parse_field(["**** ****", "***1 ****", "**  3****", "* 4 1****",\
  "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"])
-    [[' ', ' ', '2', ' ', ' ', ' ', ' ', '3', ' ', ' '], [' ', '8', ' ', ' ', '2', ' ', ' ', '6', ' ', ' '],\
- [' ', ' ', '1', ' ', ' ', ' ', '4', ' ', ' ', ' '], [' ', '8', '3', ' ', ' ', '1', ' ', ' ', ' ', ' '],\
- [' ', '9', ' ', '5', ' ', ' ', ' ', '3', '1', ' ']]
-    >>> parse_field(["**** ****", "***1 ****", "**  3****", "* 4 1****",\
- "     9 5 ", " 6  83  *", "3   1  **", "  8  2***", "  2  ****"])
-    [[' ', ' ', '2', ' ', ' ', ' ', ' ', '3', ' ', ' '], [' ', '8', ' ', ' ', '2', ' ', ' ', '6', ' ', ' '],\
- [' ', ' ', '1', ' ', ' ', ' ', '4', ' ', ' ', ' '], [' ', '8', '3', ' ', ' ', '1', ' ', ' ', ' ', ' '],\
+    [[' ', ' ', '2', ' ', ' ', ' ', ' ', '3', ' ', ' '],\
+ [' ', '8', ' ', ' ', '2', ' ', ' ', '6', ' ', ' '],\
+ [' ', ' ', '1', ' ', ' ', ' ', '4', ' ', ' ', ' '],\
+ [' ', '8', '3', ' ', ' ', '1', ' ', ' ', ' ', ' '],\
  [' ', '9', ' ', '5', ' ', ' ', ' ', '3', '1', ' ']]
     """
     rows = []
@@ -18,8 +17,8 @@ def parse_field(field):
 
     for row in field:
         append_row = []
-        for el in row:
-            append_row.append(el)
+        for element in row:
+            append_row.append(element)
         rows.append(append_row)
 
     for j in range(len(rows)):
@@ -28,11 +27,11 @@ def parse_field(field):
             new_col.append(row[j])
         columns.append(new_col)
 
-    rows_ = rows[::-1]
+    rows = rows[::-1]
     for i in range(5):
-        r_ = rows_[i][i:i+5]
-        c_ = columns[i][4-i:8-i]
-        color = r_+c_
+        sliced_rows = rows[i][i:i+5]
+        sliced_columns = columns[i][4-i:8-i]
+        color = sliced_rows+sliced_columns
         colors.append(color)
     return colors
 
@@ -64,13 +63,14 @@ def check_rows(field):
 
     for row in field:
         append_row = []
-        for el in row:
-            if el != '*':
-                append_row.append(el)
+        for element in row:
+            if element != '*':
+                append_row.append(element)
         rows.append(append_row)
 
     for _, val in enumerate(rows):
-        for j in range(len(val)):
+        number = len(val)
+        for j in range(number):
             if val[j] != " ":
                 if 1 <= int(val[j]) <= 9:
                     if  int(val[j]) not in num:
