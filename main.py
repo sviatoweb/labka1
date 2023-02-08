@@ -99,7 +99,7 @@ def check_rows(field: List[str]) -> bool:
     return True
 
 
-def check_column(board):
+def check_columns(board):
     """
     Checks whether columns are correct
     >>> check_columns(["**** ****", "***1 ****","**  3****","* 4 1****",\
