@@ -57,6 +57,12 @@ def check_rows(field):
     This function checking board rows.
     First check: if all numbers are from 1 to 9.
     Second check: if all numbers appears only once.
+    >>> check_rows(["**** ****", "***1 ****","**  3****","* 4 1****",\
+    "     9 5 "," 6  83  *","3   1  **","  8  2***","  2  ****"])
+    True
+    >>> check_rows(["**** ****", "***1 ****","**  3****","* 4 1****",\
+    "     9 5 "," 6  83 3*","3   1  **","  8  2***","  2  ****"])
+    False
     """
     rows = []
     num = []
@@ -86,6 +92,12 @@ def check_rows(field):
 def check_columns(board):
     """
     Checks whether columns are correct
+    >>> check_column(["**** ****", "***1 ****","**  3****","* 4 1****",\
+    "     9 5 "," 6  83  *","3   1  **","  8  2***","  2  ****"])
+    False
+    >>> check_column(["**** ****", "***1 ****","**  3****","* 4  ****",\
+    "     9 5 "," 6  83  *","3   1  **","  8  2***","  2  ****"])
+    True
     """
     for i in range(9):
         numbers = '123456789'
