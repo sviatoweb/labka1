@@ -20,5 +20,3 @@ def check_column(board):
                     return False
                 numbers = numbers[:index] + numbers[index + 1:]
     return True
-
-print(check_column(board))
